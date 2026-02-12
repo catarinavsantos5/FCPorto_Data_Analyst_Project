@@ -93,3 +93,49 @@ O código está devidamente comentado para facilitar a leitura e manutenção.
     - criação de um dashboard interativo;
     - análise temporal dos indicadores;
     - visualização dos KPIs calculados.
+
+
+9. Melhorias ao Projeto
+    9.1. Expansão do dataset e processamento
+    Após a versão inicial focada exclusivamente em Portugal, o projeto foi expandido de forma a enriquecer e aprofundar a análise.
+    As principais melhorias introduzidas foram:
+
+        9.1.1. Inclusão de múltiplos países europeus
+        Para além de Portugal, passaram a ser considerados vários países europeus (ex.: Alemanha, França, Espanha, Itália, Países Nórdicos, entre outros), permitindo análise comparativa entre economias; identificação de líderes por indicador; exploração de disparidades regionais.
+        O dataset final passou a ser consolidado num único ficheiro (all_countries.csv), contendo todos os países analisados.
+
+        9.1.2. Introdução do PIB Total
+        Para complementar o PIB per capita, foi acrescentado o cálculo do PIB total, através da multiplicação da população pelo PIB per capita.
+        Isto permite distinguir: dimensão absoluta da economia (PIB total); nível médio de riqueza por habitante (PIB per capita).
+
+        9.1.3. Conversão anual de USD para EUR
+        Foi integrada uma API externa para obtenção das taxas de câmbio USD → EUR, permitindo:
+        - Conversão do PIB total para EUR (gdp_total_eur);
+        - Conversão do PIB per capita para EUR (gdp_per_capita_eur);
+        - Cálculo da variação absoluta anual do PIB per capita também em EUR (gdp_pc_abs_change_eur).
+        A taxa utilizada corresponde à média anual da taxa diária USD/EUR.
+        Para anos em que não exista taxa disponível, é utilizada a taxa do ano mais próximo disponível, garantindo continuidade temporal e consistência no dataset.
+
+    9.2. Melhorias no Dashboard
+    O dashboard foi também melhorado/expandido face à versão inicial.
+
+        9.2.1. Seleção de moeda (EUR / USD) e país
+        Foi introduzida a possibilidade de alternar entre valores em USD e EUR, o que permite maior flexibilidade analítica e adaptação a diferentes contextos de análise.
+        Foi igualmente acrescentado um filtro do país, permitindo análises dinâmicas sobre diferentes geografias.
+
+        9.2.2. Alteração de um dos KPIs principais (nos cards, página 1)
+        Nos cartões principais foi substituído o indicador "PIB per capita (último ano)" por PIB Total (último ano). Esta alteração permite destacar a dimensão económica absoluta do país selecionado, complementando o foco relativo já presente nos gráficos abaixo.
+
+        9.2.3. Nova página - Análise Comparativa Europeia
+        Foi acrescentada uma página dedicada à análise comparativa entre países europeus, incluindo:
+        - Ranking anual do país com maior população, PIB total, PIB per capita e inflação (identificação de líderes por indicador nos últimos anos);
+        - Heat map geográfico do PIB per capita na Europa (visualização espacial das disparidades económicas regionais).
+        Estas análises acrescentam:
+        - Dimensão comparativa ao projeto;
+        - Contextualização internacional;
+        - Capacidade de identificar padrões estruturais (ex.: países com maior produtividade vs maior dimensão económica).
+
+    9.3. Justificação do foco no PIB per capita no dashboard
+    Embora o PIB total seja um indicador relevante da dimensão económica de um país, este tende a ser fortemente influenciado pelo tamanho populacional. Por esse motivo, o PIB per capita é frequentemente considerado uma métrica mais adequada para avaliar o nível médio de riqueza, comparar economias de diferentes dimensões.
+    A predominância da análise baseada em PIB per capita permite comparações mais equilibradas e evita enviesamentos decorrentes da dimensão demográfica.
+    O PIB total é utilizado como complemento, mas não como principal indicador comparativo.
